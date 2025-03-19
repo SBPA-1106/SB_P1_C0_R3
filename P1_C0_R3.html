@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <!--Copyright © 2025 Kamenska-Knjiga Group. All rights reserved.-->
+
+  <meta charset="UTF-8">
+  <title class="notranslate">Kamenska-Knjiga</title>
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name=apple-mobile-web-app-capable content=yes>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+  <link rel="manifest" href="https://cdn.jsdelivr.net/gh/SBPA-1106/SB_Json-Manifest_C0_V2.1@main/manifest.json">
+   <meta name="theme-color" content="#ffffff">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Kalam:wght@300;400;700&family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/SBPA-1106/SB_Images_C0_G@main/Icon.ico" type="image/x-icon">
+  <style>
+    body{
+    font-family: "Roboto", serif;
+    background-color:#fff;
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
+    overflow: hidden;
+    }
+
+:root {
+    --Header-Container-Height:15vh;
+    --Header-Font-Size:50px;
+
+    --Open-MenuButton-Height:50px; 
+    --Close-MenuButton-Height:50px;
+
+    --Year-Menu-Elements-Width:20vw;
+    --Menu-Elements-Height:15vh;
+    --Menu-Icons-Height:30px;
+    --Menu-Font-Size:30px;
+
+    --Menu-Element1-Distance: 0vh;
+    --Menu-Element2-Distance: calc(15vh + 1px);
+    --Menu-Element3-Distance: calc(30vh + 2px);
+    --Menu-Element4-Distance: calc(45vh + 3px);
+
+    --Preview-Post-Size-H:20vw; 
+    --Preview-Post-Top-D:150%;
+   
+    --Welcome-Font-Size:55px;
+    --Welcome-Distance:-28%;
+  }
+
+  @media only screen and (max-width: 480px) {
+    :root {
+        --Header-Container-Height:10vh;
+        --Header-Font-Size:27px;
+    
+        --Open-MenuButton-Height:25px;
+        --Close-MenuButton-Height:40px;
+        
+        --Year-Menu-Elements-Width:35vw;
+        --Menu-Elements-Height:10vh;
+        --Menu-Icons-Height:15px;
+        --Menu-Font-Size:15px; 
+       
+        --Menu-Element1-Distance:0vh;
+        --Menu-Element2-Distance:calc(10vh + 1px);
+        --Menu-Element3-Distance:calc(20vh + 2px);
+        --Menu-Element4-Distance:calc(30vh + 3px); 
+
+        --Preview-Post-Size-H:60vw; 
+        --Preview-Post-Top-D:150%;
+
+        --Welcome-Font-Size:35px;
+        --Welcome-Distance:-25%;
+    }
+  }
+
+.Container-Header{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+    height:var(--Header-Container-Height);
+    background-color:#fff;
+    position:absolute;
+    width:100vw;
+    padding:0px;
+    margin:0px;
+    left:0px;
+    top:0px;     
+    }
+
+.Logo{
+    transform: translateY(-50%);
+    position:absolute;
+    height:calc(75%);
+    cursor:pointer; 
+    left:2%;
+    top:50%;
+    }
+
+.Container-Header > h1{
+    font-size:var(--Header-Font-Size);
+    font-family: "Comic Neue", serif;
+    transform: translateY(-50%);
+    position:absolute;           
+    font-weight:bold;             
+    padding:0px;
+    margin:0px;
+    width:90%;
+    top:50%;
+    }
+
+.OpenMenuButton{
+    height: var(--Open-MenuButton-Height);
+    transform: translateY(-50%);
+    position:absolute;
+    cursor:pointer;
+    z-index:10;
+    right:2%;
+    top:50%;
+    }
+
+.Copyright {
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(0, 0, 0, 0.2); 
+    font-size: calc(13px + 0.390625vw); 
+    background-color:#fff;
+    position:absolute;
+    text-align:center;
+    font-weight:light;
+    z-index:10000;
+    padding:5px;
+    width:100vw;
+    margin:0px;
+    bottom:0%;    
+    left:0%;
+    }
+
+.Container-Menu{
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+    transition: right 1s ease-in-out;
+    color:rgba(0, 0, 0, 1);
+    background-color:#fff;
+    font-weight: bolder;
+    position:absolute;
+    height:100%;
+    right:-51vw;
+    padding:0px;
+    z-index:100;
+    margin:0px;
+    width:50vw;
+    top:0%;
+    }
+
+.Menu-Elements{
+    border-bottom : 1px solid rgba(0, 0, 0, 0.2);
+    height:var(--Menu-Elements-Height);
+    background-color:#fff;
+    position:absolute;
+    cursor:pointer;
+    padding:0px;
+    margin:0px; 
+    width:100%;
+    z-index:10;
+    left:0%;
+    top:0; 
+    }
+
+.Menu-Elements > h1, .Year-Menu-Elements > h1{
+    transform: translate(-50%, -50%);
+    font-size:var(--Menu-Font-Size);
+    position:absolute;
+    text-align:center;
+    font-weight:bold;
+    opacity:0.5;
+    padding:0px;
+    margin:0px;
+    width:100%;
+    left:50%;
+    top:50%;
+    }
+
+.Menu-Icons{
+    height:var(--Menu-Icons-Height);
+    transform: translateY(-50%);
+    position:absolute;
+    margin-left:5px;
+    padding:0px;
+    top:50%;
+    }    
+
+#Menu-Element-1{
+    top:var(--Menu-Element1-Distance);
+    }
+
+#Menu-Element-2{
+    top:var(--Menu-Element2-Distance); 
+    }
+
+#Menu-Element-3{
+    top:var(--Menu-Element3-Distance);
+    }
+
+#Menu-Element-4{
+    top:var(--Menu-Element4-Distance); 
+    }
+
+.CloseMenuButton {
+    height:var(--Close-MenuButton-Height);
+    width:var(--Close-MenuButton-Height);
+    position:absolute;
+    cursor:pointer;
+    opacity:0.5;
+    z-index:11;
+    padding:0;
+    margin:0;
+    left:0;
+    top:0;
+    }
+
+.CloseMenuButton > img {
+    height:var(--Menu-Icons-Height);
+    position:absolute;
+    text-align:left;
+    margin:6px;
+    z-index:11;
+    left:0;
+    top:0;
+    }
+
+.Container-Preview-Post{
+    height:var(--Preview-Post-Size-H);
+    width:var(--Preview-Post-Size-H);
+    top:var(--Preview-Post-Top-D);   
+    transform:translateX(-50%);
+    position:absolute;
+    padding:0px;
+    margin:0px;
+    left:50%;
+    }
+
+.Preview-Post{
+    height:var(--Preview-Post-Size-H);
+    transform: translateX(-50%);
+    position:absolute;
+    left:50%;
+    top:0px;
+    }
+
+.Shade{
+    transform:translate(-50%, -50%);
+    background-color:#379cf441;
+    position:absolute;
+    border-radius:50%;
+    height:110%;/*65*/
+    width:110%;
+    left:50%;
+    top:50%;
+    }
+
+.Welcome-Text{
+    transition: opacity 0.5s ease-in-out;
+    font-size:var(--Welcome-Font-Size);
+    bottom:var(--Welcome-Distance);
+    font-family: "Kalam", serif;
+    transform:translateX(-50%);
+    position:absolute;
+    text-align:center;
+    font-weight:400;
+    padding:0px;
+    width:100vw;
+    margin:0px;
+    left:50%;
+    }
+
+.Translation-Trigger-Text{
+    transform:translateX(-50%);
+    font-weight:lighter;
+    position:absolute;
+    text-align:center;
+    font-size:5px;
+    color:#fff;
+    padding:0px;
+    width:100vw;
+    margin:0px;
+    bottom:0%;
+    z-index:1;
+    left:50%;
+    }
+
+.Container-Year-Menu{
+    position:absolute;
+    top: calc(var(--Menu-Element4-Distance) - 1px);
+    width:var(--Year-Menu-Elements-Width);
+    transition:right 1s ease-in-out;
+    background-color:#fff;
+    height:calc(100%);
+    padding:0px;
+    right:-35vw; 
+    margin:0px;
+    z-index:1;
+    }
+
+.Year-Menu-Elements{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    height:var(--Menu-Elements-Height);
+    background-color:#fff;
+    position:absolute;
+    cursor:pointer; 
+    width:100%;
+    }
+
+#Year-Menu-2025{
+    display:block;
+    top:0vh;
+    }
+
+#Year-Menu-2026{
+    display:none;
+    top:var(--Menu-Element2-Distance); 
+    }
+#Year-Menu-2027{
+    display:none;
+    top:var(--Menu-Element3-Distance); 
+    }
+  </style>
+
+</head>
+<body>
+
+  <div class="Container-Header">
+    <img src="https://cdn.jsdelivr.net/gh/SBPA-1106/SB_Images_C0_G@main/Logo.png" class="Logo" onclick="OpenMenu()">
+      <h1 class="notranslate Heading">Kamenska-Knjiga</h1>
+    <img class="OpenMenuButton" src="https://cdn.jsdelivr.net/gh/SBPA-1106/SB_Images_C0_G@main/Menu.png">
+    <div class="Container-Preview-Post">
+      <img src="https://cdn.jsdelivr.net/gh/SBPA-1106/SB_Example-Posts_C0_G@main/Preview-Post-1.png" class="Preview-Post">
+      <h1 class="Welcome-Text notranslate"></h1>
+      <div class="Shade"></div>
+    </div>
+  </div>
+
+  <div class="Container-Menu">
+    <div class="Menu-Elements" id="Menu-Element-1">
+      <h1 id="TW1">O nama/Kontakt<img src="https://cdn.jsdelivr.net/gh/SBPA-1106/SB_Images_C0_G@main/Information.png" class="Menu-Icons"></h1>
+    </div>
+    <div class="Menu-Elements" id="Menu-Element-2">
+      <h1 id="TW2">Uvjeti ugovora<img src="https://cdn.jsdelivr.net/gh/SBPA-1106/SB_Images_C0_G@main/Contract.png" class="Menu-Icons"></h1>
+    </div>
+    <div class="Menu-Elements" id="Menu-Element-3">
+      <h1 id="TW3">Pošaljite sliku<img src="https://cdn.jsdelivr.net/gh/SBPA-1106/SB_Images_C0_G@main/Mail.png" class="Menu-Icons"></h1>
+    </div>
+    <div class="Menu-Elements" id="Menu-Element-4">
+      <h1 id="TW4">Slike<img src="https://cdn.jsdelivr.net/gh/SBPA-1106/SB_Images_C0_G@main/Images.png" class="Menu-Icons"></h1>
+    </div>
+    <div class="CloseMenuButton">
+      <img src="https://raw.githubusercontent.com/SBPA-1106/SB_Images_C0_G/main/Close.png">
+    </div>
+  </div>
+<!--https://cdn.jsdelivr.net/gh/SBPA-1106/SB_Images_C0_G@main/Close.png-->
+  <div class="Container-Year-Menu">
+    <div class="Year-Menu-Elements" id="Year-Menu-2025"><h1>2025</h1></div>
+    <div class="Year-Menu-Elements" id="Year-Menu-2026"><h1>2026</h1></div>
+    <div class="Year-Menu-Elements" id="Year-Menu-2027"><h1>2027</h1></div>
+  </div>
+
+  <div class="Translation-Trigger-Text"> 
+    Hrvatska, č,ć,ž,š,đ. Ovaj tekst je napisan na hrvatskom jeziku.
+    Kuća, staklo, šalica, cvijet, crvena, plava, zelena.
+    Dobar dan, laku noć dragi gospodine, draga gospođo.
+    Hrvatska, semafor, čarapa, cipele, vrata, čaj, šećer.
+  </div>
+
+  <div class="Copyright notranslate">Copyright © 2025 Kamenska-Knjiga Group</div>
+
+  
+  <script>
+    let Heading = document.querySelector(".Heading");
+    let Logo = document.querySelector(".Logo");
+    
+    let OpenMenuButton = document.querySelector(".OpenMenuButton");
+    let CloseMenuButton = document.querySelector(".CloseMenuButton");
+    
+    let ImpresumButton = document.querySelector("#Menu-Element-1");
+    let ContractButton = document.querySelector("#Menu-Element-2");
+    let PostImageButton = document.querySelector("#Menu-Element-3");
+    let YearMenuButton = document.querySelector("#Menu-Element-4");
+    
+    let MenuBar = document.querySelector(".Container-Menu");
+    let YearMenu = document.querySelector(".Container-Year-Menu")
+    
+    let Open2025Button = document.querySelector("#Year-Menu-2025");
+    
+    OpenMenuButton.addEventListener('click', OpenMenu);
+    CloseMenuButton.addEventListener('click', CloseMenu);
+    ImpresumButton.addEventListener('click', OpenImpresum);
+    ContractButton.addEventListener('click', OpenContract);
+    PostImageButton.addEventListener('click', OpenPostImage);
+    Open2025Button.addEventListener('click', Open2025Gallery);
+    YearMenuButton.addEventListener('click', OpenYearMenu);
+    
+    function OpenMenu(){
+      MenuBar.style.right = "0vw";
+    }
+    
+    function CloseMenu(){
+      MenuBar.style.right = "-51vw";
+      YearMenu.style.right = "-35vw";
+    }
+     
+    function OpenImpresum(){
+      window.location.href = "https://sbpa-1106.github.io/SB_P2_C0_R0/P2_C0_R0.html";
+    }
+    
+    function OpenContract(){
+      window.location.href = "https://sbpa-1106.github.io/SB_P3_C0_R0/P3_C0_R0.html";
+    }
+    
+    function OpenPostImage(){
+      window.location.href = "https://sbpa-1106.github.io/SB_P4_C0_R0/P4_C0_R0.html";
+    }
+    
+    function OpenYearMenu(){
+      YearMenu.style.right = "50vw";
+    }
+    
+    function Open2025Gallery(){
+      window.location.href = "https://sbpa-1106.github.io/SB_P5_2025_C0_R0/P5-2025_C0_R0.html";
+    }
+    
+    document.addEventListener("DOMContentLoaded", function () {
+ 
+    const LogoWidth = Logo.offsetWidth;
+    
+    Heading.style.left = `calc(${LogoWidth}px + 4%)`;
+    
+      const PreviewPosts = [
+        'https://cdn.jsdelivr.net/gh/SBPA-1106/SB_Example-Posts_C0_G@main/Preview-Post-1.png',
+        'https://cdn.jsdelivr.net/gh/SBPA-1106/SB_Example-Posts_C0_G@main/Preview-Post-2.png',
+        'https://cdn.jsdelivr.net/gh/SBPA-1106/SB_Example-Posts_C0_G@main/Preview-Post-3.png',
+        'https://cdn.jsdelivr.net/gh/SBPA-1106/SB_Example-Posts_C0_G@main/Preview-Post-4.png',
+        'https://cdn.jsdelivr.net/gh/SBPA-1106/SB_Example-Posts_C0_G@main/Preview-Post-5.png',
+      ];
+      
+      let currentImgIndex = 0;
+      const PreviewPost = document.querySelector(".Preview-Post");
+    
+      function UpdatePreviewPost(index) {
+        PreviewPost.src = PreviewPosts[index];
+      }
+    
+      function ChangePreviewPost() {
+        currentImgIndex = (currentImgIndex + 1) % PreviewPosts.length;
+        UpdatePreviewPost(currentImgIndex);
+      }
+    
+      UpdatePreviewPost(currentImgIndex);
+    
+      setInterval(ChangePreviewPost, 5000);
+    });
+    
+    document.addEventListener("DOMContentLoaded", function () {
+      const WelcomeWords = [
+        'Dobrodošli',
+        'Welcome',
+        'Willkommen',
+        'Bienvenue',
+        'Benvenuto',
+        'Welkom',
+        'Velkommen',
+        'Fáilte',
+        'Velkominn',
+        'Wëllkomm',
+        'Velkommen',
+        'Välkommen',
+        'Tervetuloa',
+        'Tere tulemast',
+        'Laipni lūdzam',
+        'Sveiki atvykę',
+        'Bienvenido',
+        'Vitajte',
+        'Bine ați venit',
+        'Bem-vindo',
+        'Üdvözöljük',
+        'Vítejte',
+        'Dobre doshli',
+        'Witaj',
+        'Merħba',
+        'Καλώς ήρθατε',
+        'Mirësevini',
+        'Καλώς ορίσατε'
+      ];
+      
+      let currentWordIndex = 0;
+      const WelcomeText = document.querySelector(".Welcome-Text");
+      function UpdateWelcomeWord(index) {
+        WelcomeText.style.opacity = 0;
+        setTimeout(() => {
+          WelcomeText.textContent = WelcomeWords[index];
+          WelcomeText.style.opacity = 1;
+        }, 500);
+    }
+    
+      function ChangeWelcomeWord() {
+          currentWordIndex = (currentWordIndex + 1) % WelcomeWords.length;
+          UpdateWelcomeWord(currentWordIndex);
+      }
+    
+      UpdateWelcomeWord(currentWordIndex);
+    
+      setInterval(ChangeWelcomeWord, 5000);
+    });
+    
+    let ChildIcon1 = TW1.querySelector('.Menu-Icons'); 
+    let ChildIcon2 = TW2.querySelector('.Menu-Icons'); 
+    let ChildIcon3 = TW3.querySelector('.Menu-Icons'); 
+    let ChildIcon4 = TW4.querySelector('.Menu-Icons'); 
+    
+    function Translation() {
+      let HTMLLangTag = document.documentElement.lang;
+    
+      if (HTMLLangTag == 'hr') {
+        document.getElementById("TW1").innerHTML = "Više od nama";
+        document.getElementById("TW2").innerHTML = "Uvjeti ugovora";
+        document.getElementById("TW3").innerHTML = "Pošaljite sliku";
+        document.getElementById("TW4").innerHTML = "Slike";
+    
+        TW1.appendChild(ChildIcon1);
+        TW2.appendChild(ChildIcon2);
+        TW3.appendChild(ChildIcon3);
+        TW4.appendChild(ChildIcon4);
+      }
+    
+      if (HTMLLangTag == 'en') {
+        document.getElementById("TW1").innerHTML = "About us";
+        document.getElementById("TW2").innerHTML = "Therms of contract";
+        document.getElementById("TW3").innerHTML = "Send an image";
+        document.getElementById("TW4").innerHTML = "Images";
+    
+        TW1.appendChild(ChildIcon1);
+        TW2.appendChild(ChildIcon2);
+        TW3.appendChild(ChildIcon3);
+        TW4.appendChild(ChildIcon4);
+      }
+    
+      if (HTMLLangTag == 'de') {
+        document.getElementById("TW1").innerHTML = "Impressum";
+        document.getElementById("TW2").innerHTML = "AGB";
+        document.getElementById("TW3").innerHTML = "Bildeinreichung";
+        document.getElementById("TW4").innerHTML = "Bilder";
+    
+        TW1.appendChild(ChildIcon1);
+        TW2.appendChild(ChildIcon2);
+        TW3.appendChild(ChildIcon3);
+        TW4.appendChild(ChildIcon4);
+      }
+    }
+    
+    function changeLanguage(lang) {
+      document.documentElement.lang = lang;
+    }
+    
+    const langTagObserver = new MutationObserver(function (mutationsList) {
+      for (let mutation of mutationsList) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'lang') {
+          Translation(); 
+        }
+      }
+    });
+    
+    const targetNode = document.documentElement;
+    
+    const config = { attributes: true, attributeFilter: ['lang'] };
+    
+    langTagObserver.observe(targetNode, config);
+  </script>
+  
+</body>
+</html>
